@@ -14,9 +14,9 @@ namespace Part_4___Random_Numbers
             //random numbers
 
             Random generator = new Random();
-            int num1, num2, die1, die2;
-            decimal double1, double2, answer;
-
+            int num1, num2, die1, die2, decimalCounter1 = 0, decimalCounter2 = 0;
+            double double1, double2, decimalTester1, decimalTester2, answer;
+            /*
             Console.WriteLine("give me a range for some numbers");
             Console.Write("give me a minimum\t");
             num1 = Convert.ToInt32(Console.ReadLine());
@@ -44,30 +44,41 @@ namespace Part_4___Random_Numbers
             die1 = generator.Next(1, 7); die2 = generator.Next(1, 7);
             Console.WriteLine($"i got {die1} and {die2}");
             Console.WriteLine($"they add up to {die1 + die2}");
-            System.Threading.Thread.Sleep(2000);
-            Console.Clear();
+            System.Threading.Thread.Sleep(1000);
+            Console.Clear();*/
 
             //random decimal
 
             Console.WriteLine("i need some more precise numbers this time");
             Console.Write("give me a minimum\t");
-            double1 = Convert.ToDecimal(Console.ReadLine());
+            double1 = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("now i want a maximum\t");
             double2 = double1 - 1;
             while (double2 < double1)
             {
-                double2 = Convert.ToInt32(Console.ReadLine());
+                double2 = Convert.ToDouble(Console.ReadLine());
                 if (double2 < double1) { Console.WriteLine("another"); }
+            }
+
+            decimalTester1 = double1 - (int)double1;
+            decimalTester1 = Math.Round(decimalTester1, 4);
+            while (decimalTester1 > 0)
+            {
+                decimalCounter1++;
+                decimalTester1 *= 10;
+                decimalTester1 -= (int)decimalTester1;
+                double1 *= 10;
+                double2 *= 10;
             }
 
             Console.WriteLine("here are your numbers");
             for (int i = 0; i <= 4; i++)
             {
-                answer = generator.Next(Convert.ToInt32(double1 - Decimal.Truncate(double1)), Convert.ToInt32(double2 - Decimal.Truncate(double2)));
-                answer += Convert.ToDecimal(generator.NextDouble());
-                answer += double1 - Math.Truncate(double1);
+                Console.WriteLine(generator.Next(Convert.ToInt32(double1), Convert.ToInt32(double2 + 1)));
+                System.Threading.Thread.Sleep(1000);
             }
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }
